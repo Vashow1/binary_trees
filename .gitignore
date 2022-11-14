@@ -50,3 +50,11 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+
+# Directory containing file that pretty prints the trees
+**/0x1C.c
+binary_tree_print.c
+
+# script to automate pushing
+git_push

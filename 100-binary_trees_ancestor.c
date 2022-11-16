@@ -10,12 +10,13 @@
  * if no common ancestor is found, return NULL
  */
 
-binary_tree_t *binary_trees_ancestor(const binary_tree_t *first, const binary_tree_t *second)
+binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
+		const binary_tree_t *second)
 {
 	binary_tree_t *firstPa, *secondPa;
 
 	if (first == NULL || second == NULL)
-		return NULL;
+		return (NULL);
 
 	firstPa = first->parent;
 	secondPa = second->parent;

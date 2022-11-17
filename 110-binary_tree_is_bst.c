@@ -52,10 +52,8 @@ int maximum(binary_tree_t *tree)
 
 int binary_tree_is_bst(const binary_tree_t *tree)
 {
-	int check1, check2;
-
 	if (tree == NULL)
-		return (0);
+		return (1);
 
 	if ((tree->left != NULL)
 		&& (maximum(tree->left) > tree->n))
@@ -65,11 +63,8 @@ int binary_tree_is_bst(const binary_tree_t *tree)
 		&& (minimum(tree->right) < tree->n))
 		return (0);
 
-	if (tree->left != NULL)
-		check1 = binary_tree_is_bst(tree->left);
-	if (tree->right != NULL)
-		check2 = binary_tree_is_bst(tree->right);
-	if (check1 == 0 || check2 == 0)
+	if (!binary_tree_is_bst(tree->left) ||
+		!binary_tree_is_bst(tree->right))
 		return (0);
 
 	return (1);

@@ -53,6 +53,7 @@ int maximum(binary_tree_t *tree)
 int binary_tree_is_bst(const binary_tree_t *tree)
 {
 	int check1, check2;
+
 	if (tree == NULL)
 		return (0);
 

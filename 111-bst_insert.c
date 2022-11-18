@@ -6,6 +6,7 @@
  * @temp: points to a ever changing initial root of tree
  * @looping: precursor to temp
  * @inserted: the struct to be inserted
+ * Return: the node of the inserted node;
  */
 
 bst_t *tree_insert_rec(bst_t *temp, bst_t *looping, bst_t *inserted)
@@ -33,7 +34,6 @@ bst_t *tree_insert_rec(bst_t *temp, bst_t *looping, bst_t *inserted)
 		temp->right = inserted;
 	return (inserted);
 }
-		
 
 /**
  * bst_insert - inserts a value in a binary search tree
@@ -65,4 +65,4 @@ bst_t *bst_insert(bst_t **tree, int value)
 		return (NULL);
 	return (inserted);
 }
-	
+

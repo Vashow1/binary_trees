@@ -1,6 +1,41 @@
 #include "binary_trees.h"
 
 /**
+ * tree_insert_rec - performs insertion recursively
+ *
+ * @temp: points to a ever changing initial root of tree
+ * @looping: precursor to temp
+ * @inserted: the struct to be inserted
+ */
+
+bst_t *tree_insert_rec(bst_t *temp, bst_t *looping, bst_t *inserted)
+{
+	if (looping != NULL)
+	{
+		if (inserted->n < looping->n)
+		{
+			tree_insert_rec(looping, looping->left, inserted);
+			return (inserted);
+		}
+		else if (inserted->n > looping->n)
+		{
+			tree_insert_rec(looping, looping->right, inserted);
+			return (inserted);
+		}
+		else if (inserted->n == looping->n)
+			return (NULL);
+	}
+
+	inserted->parent = temp;
+	if (inserted->n < temp->n)
+		temp->left = inserted;
+	else
+		temp->right = inserted;
+	return (inserted);
+}
+		
+
+/**
  * bst_insert - inserts a value in a binary search tree
  *
  * @tree: is a double pointer to the root node of the BST to insert the value
@@ -18,24 +53,16 @@ bst_t *bst_insert(bst_t **tree, int value)
 		return (NULL);
 
 	inserted->n = value;
-	while (looping != NULL)
-	{
-		temp = looping;
-		if (value < looping->n)
-			looping = looping->left;
-		else if (value > looping->n)
-			looping = looping->right;
-		else
-			return (NULL);
-	}
+	inserted->left = NULL;
+	inserted->right = NULL;
+	inserted->parent = NULL;
 
-	inserted->parent = temp;
-	if (temp == NULL)
-		*tree = inserted;
-	else if (value < temp->n)
-		temp->left = inserted;
-	else
-		temp->right = inserted;
+	if (*tree == NULL)
+		return (*tree = inserted);
 
+	inserted = (tree_insert_rec(temp, looping, inserted));
+	if (inserted->parent == NULL)
+		return (NULL);
 	return (inserted);
 }
+	

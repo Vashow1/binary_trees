@@ -47,15 +47,9 @@ bst_t *bst_insert(bst_t **tree, int value)
 {
 	bst_t *temp = NULL;
 	bst_t *looping = *tree;
-	bst_t *inserted = malloc(sizeof(bst_t));
+	bst_t *inserted;
 
-	if (inserted == NULL)
-		return (NULL);
-
-	inserted->n = value;
-	inserted->left = NULL;
-	inserted->right = NULL;
-	inserted->parent = NULL;
+	inserted = binary_tree_node(NULL, value);
 
 	if (*tree == NULL)
 		return (*tree = inserted);
